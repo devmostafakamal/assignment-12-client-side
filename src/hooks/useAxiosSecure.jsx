@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 const axiosSecure = axios.create({
   baseURL: "http://localhost:3000",
+  withCredentials: true,
 });
 
 const useAxiosSecure = () => {
@@ -13,9 +14,10 @@ const useAxiosSecure = () => {
     // request interceptor
     const requestInterceptor = axiosSecure.interceptors.request.use(
       (config) => {
-        const token = localStorage.getItem("realEstate-token");
+        const token = localStorage.getItem("access-token");
+        console.log(token);
         if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
+          config.headers.authorization = `Bearer ${token}`;
         }
         return config;
       },

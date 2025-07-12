@@ -42,7 +42,7 @@ const MyAddedProperties = () => {
   if (isLoading) {
     return <span className="loading loading-spinner loading-lg"></span>;
   }
-  console.log(properties);
+  // console.log(properties);
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {properties.map((p) => (

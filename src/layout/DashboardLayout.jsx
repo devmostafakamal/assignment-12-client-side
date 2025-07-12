@@ -85,6 +85,11 @@ function DashboardLayout() {
                   <FaBoxOpen className="inline mr-2" /> My Profile
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/wishlist">
+                  <FaBoxOpen className="inline mr-2" /> Wishlist
+                </NavLink>
+              </li>
             </>
           )}
 

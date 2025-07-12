@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../socialLogin/SocialLogin";
 import useAuth from "../../../hooks/useAuth";
 import { toast } from "react-hot-toast";
+import { getIdToken } from "firebase/auth";
 
 function Login() {
   const {
@@ -20,10 +21,26 @@ function Login() {
   const from = location.state?.from || "/";
 
   const onSubmit = (data) => {
-    setFirebaseError(null); // clear previous error
+    setFirebaseError(null);
     signIn(data.email, data.password)
-      .then((result) => {
-        navigate(from);
+      .then(async (result) => {
+        const user = result.user;
+        const idToken = await getIdToken(user); // Firebase token
+
+        // 🔐 Send token to backend to get custom JWT
+        const res = await fetch("http://localhost:3000/jwt", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: idToken }),
+        });
+
+        const responseData = await res.json();
+        localStorage.setItem("access-token", responseData.token); // Save JWT
+
+        toast.success("Login successful");
+        navigate(from); // Navigate to desired route
       })
       .catch((err) => {
         console.log(err.code);

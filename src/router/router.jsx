@@ -18,6 +18,8 @@ import MySoldProperties from "../pages/Dashboard/Agent/MySoldProperties";
 import RequestedProperties from "../pages/Dashboard/Agent/RequestedProperties";
 import UpdateProperty from "../pages/Dashboard/Agent/UpdateProperty";
 import ManageProperties from "../pages/Dashboard/Admin/ManageProperties";
+import PropertyDetails from "../pages/AllProperties/PropertyDetails";
+import Wishlist from "../pages/Dashboard/User/WishList";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +34,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AllProperties></AllProperties>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "property-details/:id",
+        element: (
+          <PrivateRoute>
+            <PropertyDetails></PropertyDetails>
           </PrivateRoute>
         ),
       },
@@ -61,6 +71,10 @@ export const router = createBrowserRouter([
       {
         path: "myProfile",
         Component: MyProfile,
+      },
+      {
+        path: "wishlist",
+        Component: Wishlist,
       },
       {
         path: "agentProfile",
