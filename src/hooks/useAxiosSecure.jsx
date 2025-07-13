@@ -15,7 +15,7 @@ const useAxiosSecure = () => {
     const requestInterceptor = axiosSecure.interceptors.request.use(
       (config) => {
         const token = localStorage.getItem("access-token");
-        console.log(token);
+        // console.log(token);
         if (token) {
           config.headers.authorization = `Bearer ${token}`;
         }
@@ -30,7 +30,7 @@ const useAxiosSecure = () => {
       (error) => {
         const status = error?.response?.status;
         if (status === 401 || status === 403) {
-          localStorage.removeItem("realEstate-token");
+          localStorage.removeItem("access-token");
           navigate("/login");
         }
         return Promise.reject(error);

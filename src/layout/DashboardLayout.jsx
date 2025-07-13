@@ -90,6 +90,11 @@ function DashboardLayout() {
                   <FaBoxOpen className="inline mr-2" /> Wishlist
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/property-bought">
+                  Property Bought
+                </NavLink>
+              </li>
             </>
           )}
 

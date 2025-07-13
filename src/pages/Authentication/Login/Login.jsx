@@ -26,14 +26,13 @@ function Login() {
       .then(async (result) => {
         const user = result.user;
         const idToken = await getIdToken(user); // Firebase token
-
-        // 🔐 Send token to backend to get custom JWT
         const res = await fetch("http://localhost:3000/jwt", {
           method: "POST",
+          credentials: "include", // এটি যোগ করুন
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ token: idToken }),
+          body: JSON.stringify({ email: user.email }), // Firebase user থেকে email পাঠান
         });
 
         const responseData = await res.json();
