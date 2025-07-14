@@ -19,9 +19,8 @@ const PropertyBought = () => {
   });
 
   const handlePay = (offer) => {
-    navigate("/dashboard/payment", { state: offer });
+    navigate(`/dashboard/payment/${offer._id}`, { state: offer });
   };
-  console.log(offers);
 
   return (
     <div className="p-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -34,7 +33,6 @@ const PropertyBought = () => {
           key={offer._id}
           className="border rounded shadow p-4 flex flex-col"
         >
-          {/* যদি property এর ছবি থাকে, তা দেখাবে, নাহলে প্লেসহোল্ডার */}
           <img
             src={offer.image || "/placeholder.png"}
             alt={offer.title}

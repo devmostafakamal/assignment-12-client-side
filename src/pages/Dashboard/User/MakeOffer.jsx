@@ -28,7 +28,6 @@ const MakeOffer = () => {
         "error"
       );
     }
-
     // ✅ Prepare offer data
     const offerData = {
       propertyId: property._id,
@@ -39,6 +38,7 @@ const MakeOffer = () => {
       offerAmount,
       buyerEmail: user.email,
       buyerName: user.displayName,
+      agentEmail: property.agentEmail,
       buyingDate: data.buyingDate,
       status: "pending",
     };

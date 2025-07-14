@@ -22,6 +22,9 @@ import PropertyDetails from "../pages/AllProperties/PropertyDetails";
 import Wishlist from "../pages/Dashboard/User/WishList";
 import MakeOffer from "../pages/Dashboard/User/MakeOffer";
 import PropertyBought from "../pages/Dashboard/User/PropertyBought";
+import MyReviews from "../pages/Dashboard/User/MyReviews";
+import ManageReviews from "../pages/Dashboard/Admin/ManageReviews ";
+import Payment from "../pages/Payments/Payment";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -85,6 +88,14 @@ export const router = createBrowserRouter([
       {
         path: "property-bought",
         Component: PropertyBought,
+      },
+      {
+        path: "payment/:offerId",
+        Component: Payment,
+      },
+      {
+        path: "reviews",
+        Component: MyReviews,
       },
       {
         path: "agentProfile",
@@ -152,6 +163,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-review",
+        element: (
+          <AdminRoute>
+            <ManageReviews></ManageReviews>
           </AdminRoute>
         ),
       },

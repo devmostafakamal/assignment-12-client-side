@@ -95,6 +95,9 @@ function DashboardLayout() {
                   Property Bought
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/reviews">My Reviews</NavLink>
+              </li>
             </>
           )}
 
@@ -115,6 +118,9 @@ function DashboardLayout() {
                 <NavLink to="/dashboard/manageUser">
                   <FaMoneyCheckAlt className="inline mr-2" /> Manage User
                 </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage-review">Manage Reviews</NavLink>
               </li>
             </>
           )}

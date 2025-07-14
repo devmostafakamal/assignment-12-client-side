@@ -23,7 +23,7 @@ const PropertyDetails = () => {
     },
   });
 
-  const { data: reviews = [] } = useQuery({
+  const { data: reviews = [], refetch } = useQuery({
     queryKey: ["reviews", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/reviews/${id}`);
@@ -48,6 +48,7 @@ const PropertyDetails = () => {
         image: property.image,
         priceRange: property.priceRange,
         agentName: property.agentName,
+        agentEmail: property.agentEmail,
         location: property.location,
         verificationStatus: property.verificationStatus || "pending",
       };
@@ -67,10 +68,13 @@ const PropertyDetails = () => {
     try {
       const reviewData = {
         propertyId: property._id,
-        userEmail: user.email,
-        userName: user.displayName,
-        review: reviewText,
-        date: new Date().toISOString(),
+        propertyTitle: property.title,
+        agentName: property.agentName,
+        reviewerEmail: user.email,
+        reviewerName: user.displayName,
+        reviewerImage: user.photoURL,
+        description: reviewText,
+        createdAt: new Date(),
       };
 
       await axiosSecure.post("/reviews", reviewData);
@@ -127,11 +131,11 @@ const PropertyDetails = () => {
         ) : (
           reviews.map((review) => (
             <div key={review._id} className="border p-3 rounded-md bg-gray-100">
-              <p className="font-semibold">{review.userName}</p>
+              <p className="font-semibold">{review.reviewerName}</p>
               <p className="text-sm text-gray-600">
-                {new Date(review.date).toLocaleString()}
+                {new Date(review.createdAt).toLocaleString()}
               </p>
-              <p>{review.review}</p>
+              <p>{review.description}</p>
             </div>
           ))
         )}
